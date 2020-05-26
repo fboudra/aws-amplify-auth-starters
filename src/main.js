@@ -4,7 +4,8 @@ import VueRouter from 'vue-router'
 // amplify configuration
 import Amplify, * as AmplifyModules from 'aws-amplify'
 import { AmplifyPlugin } from 'aws-amplify-vue'
-import aws_exports from './aws-exports'
+import aws_exports from '../aws-exports'
+
 Amplify.configure(aws_exports)
 
 // Vue components
@@ -41,7 +42,7 @@ router.beforeResolve((to, _, next) => {
         next()
       } 
     }).catch((e) => {
-      console.log('You are trying to access a protected route. Please sign in.')
+      console.log('You are trying to access a protected route. Please sign in.', e)
       next({
         path: '/',
         query: {
